@@ -1,9 +1,17 @@
+import LoginModal from "../components/auth/loginModel";
+import Navbar from "../components/common/navbar";
+import {HeroSection} from "../components/specific/HeroSection";
+
 
 
 export default function Home() {
   return (
-    <div className="bg-slate-50">
-      <h1 className="text-3xl font-sans">hi</h1>
+    <div className="">
+      <Navbar />
+      <div>
+        <HeroSection />  
+        <LoginModal />
+      </div>
     </div>
   );
 }

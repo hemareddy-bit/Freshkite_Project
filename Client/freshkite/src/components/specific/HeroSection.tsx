@@ -94,7 +94,9 @@ export function HeroSection() {
             View Courses
           </a>
         </div>
+        <div className="">
         <CourseCarousel />
+        </div>
       </section>
 
     </div>

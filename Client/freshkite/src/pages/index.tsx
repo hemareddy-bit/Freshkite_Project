@@ -1,5 +1,5 @@
 import Navbar from "../components/common/navbar";
-import HeroSection from "../components/specific/HeroSection";
+import {HeroSection} from "../components/specific/HeroSection";
 
 
 
@@ -8,7 +8,7 @@ export default function Home() {
     <div className="">
       <Navbar />
       <div>
-        <HeroSection />
+        <HeroSection />  
       </div>
     </div>
   );

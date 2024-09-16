@@ -9,7 +9,7 @@ export default function Navbar() {
                     <div className="text-slate-800 dark:text-white text-lg font-sans font-bold">
                         <Link href="/">
                                 <img
-                                    src="https://static.wixstatic.com/media/dce153_2dc52316c9134a4bb8f9341e7ef27c23~mv2.png/v1/fill/w_360,h_70,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/freshkite_edited.png"
+                                    src="/images/freshkite_edited.webp"
                                     alt="Your image alt text"
                                     width={200}
                                     height={200}

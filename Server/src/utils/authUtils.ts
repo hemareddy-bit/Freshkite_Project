@@ -3,7 +3,7 @@ import { config } from "../config/config";
 
 const client = new OAuth2Client(config.clientId);
 
-export const verifyToken = async (idToken: string) => {
+export const verifyAuth = async (idToken: string) => {
   try {
     console.log(idToken);
     

@@ -4,11 +4,11 @@ import { config } from "../config/config";
 require("dotenv").config();
 
 interface IUser extends Document {
-  googleId: String;
-  username: String;
-  email: String;
-  profilePicture: String;
-  generateAuthToken: () => String;
+  googleId: string;
+  username: string;
+  email: string;
+  profilePicture: string;
+  generateAuthToken: () => string;
 }
 
 const userSchema: Schema = new Schema<IUser>({

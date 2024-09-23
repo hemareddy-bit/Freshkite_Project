@@ -27,7 +27,7 @@ const LoginModal = () => {
            
                    {/* Terms of Service */}
                    <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
-                       By signing in, you agree to our terms of service and privacy policy.
+                       By signing in,freshkite you agree to our terms of service and privacy policy.
                    </p>
            
                    {/* Cancel Button */}

@@ -3,16 +3,18 @@ import CourseTemplate from "../../common/courseTemplate";
 export default function ProblemSolving() {
     const courses = [
         {
-          title: 'Basic Problen Solving',
-          description: 'Master If | Loop | Sorting | Serching | Recursion | Patern Printing',
-          image: '/images/basic_problem_solving.png'
+            title: 'Basic Problen Solving',
+            description: 'Master If | Loop | Sorting | Serching | Recursion | Patern Printing',
+            image: '/images/basic_problem_solving.png',
+            Link: '/courses/HtmlCssJs'
         },
         {
-          title: 'DSA',
-          description: 'Follow a structured path to learn all of the core data structures & algorithms.',
-          image: '/images/Dsa.webp'
+            title: 'DSA',
+            description: 'Follow a structured path to learn all of the core data structures & algorithms.',
+            image: '/images/Dsa.webp',
+            Link: '/courses/HtmlCssJs'
         },
-      ];
+    ];
     return (
         <div className="flex flex-row  bg-slate-200 dark:bg-gray-900 min text-black dark:text-white">
             {/* Header Section */}
@@ -20,7 +22,7 @@ export default function ProblemSolving() {
                 <h1 className="text-4xl font-bold">Problem Solving</h1>
                 <p className="text-lg mt-4 text-gray-700 dark:text-gray-400 max-w-md">
                     Master the fundamentals of
-                   Problem Solving through a comprehensive and structured path.
+                    Problem Solving through a comprehensive and structured path.
                 </p>
             </section>
 
@@ -31,6 +33,7 @@ export default function ProblemSolving() {
                         title={course.title}
                         description={course.description}
                         image={course.image}
+                        Link={course.Link}
                     />
                 ))}
             </section>

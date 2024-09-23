@@ -3,16 +3,18 @@ import CourseTemplate from "../../common/courseTemplate";
 export default function WebDev() {
     const courses = [
         {
-          title: 'HTML CSS & JavaScript for Beginners',
-          description: 'Learn the foundations of coding interviews.',
-          image: '/images/Html_Css_Js.png'
+            title: 'HTML CSS & JavaScript for Beginners',
+            description: 'Learn the foundations of coding interviews.',
+            image: '/images/Html_Css_Js.png',
+            Link: '/courses/HtmlCssJs'
         },
         {
-          title: 'MERN Stack for Beginners',
-          description: 'Learn React JS, Node JS, Express, and MongoDB.',
-          image: '/images/Mern-Stack-Developer.png'
+            title: 'MERN Stack for Beginners',
+            description: 'Learn React JS, Node JS, Express, and MongoDB.',
+            image: '/images/Mern-Stack-Developer.png',
+            Link: '/courses/HtmlCssJs'
         },
-      ];
+    ];
     return (
         <div className="flex flex-row  bg-slate-200 dark:bg-gray-900 min text-black dark:text-white">
             {/* Header Section */}
@@ -31,6 +33,7 @@ export default function WebDev() {
                         title={course.title}
                         description={course.description}
                         image={course.image}
+                        Link={course.Link}
                     />
                 ))}
             </section>

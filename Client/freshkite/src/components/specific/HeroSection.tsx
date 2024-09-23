@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SwiperCore from 'swiper';
-
+import { useRouter } from 'next/router';
 const courses = [
   {
     image: '/images/Html_Css_Js.png',
@@ -38,7 +38,10 @@ const courses = [
 
 export const CourseCarousel: React.FC = () => {
   const swiperRef = useRef<SwiperCore | null>(null);
-
+  const router = useRouter();
+  const handleNav = () => {
+    router.push('/course')
+  }
   const handleMouseEnter = () => {
     if (swiperRef.current && swiperRef.current.autoplay) {
       swiperRef.current.autoplay.stop();
@@ -68,7 +71,7 @@ export const CourseCarousel: React.FC = () => {
           <SwiperSlide key={index}>
             <div className="cursor-pointer">
               <div className="rounded-md mb-4">
-                <img src={course.image}  width={500} className="rounded-md" />
+                <img onClick={handleNav} src={course.image}  width={500} className="rounded-md" />
               </div>
             </div>
           </SwiperSlide>

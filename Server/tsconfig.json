@@ -10,7 +10,13 @@
     "skipLibCheck": true,
     "outDir": "./dist",   /* The compiled JS output will go here */
     "rootDir": "./src",
-    "esModuleInterop": true   /* The source TypeScript files will be in this directory */
+    "esModuleInterop": true ,
+     "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+  ]  
                         
-  }
+  },"include": [
+    "src/**/*.ts",
+  ]
 }

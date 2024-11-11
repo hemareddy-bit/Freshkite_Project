@@ -1,5 +1,4 @@
 
-// components/CourseCarousel.tsx
 
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide, } from 'swiper/react';
@@ -71,7 +70,7 @@ export const CourseCarousel: React.FC = () => {
           <SwiperSlide key={index}>
             <div className="cursor-pointer">
               <div className="rounded-md mb-4">
-                <img onClick={handleNav} src={course.image}  width={500} className="rounded-md" />
+                <img onClick={handleNav} src={course.image} width={500} className="rounded-md" />
               </div>
             </div>
           </SwiperSlide>
@@ -98,7 +97,7 @@ export function HeroSection() {
           </a>
         </div>
         <div className="">
-        <CourseCarousel />
+          <CourseCarousel />
         </div>
       </section>
 

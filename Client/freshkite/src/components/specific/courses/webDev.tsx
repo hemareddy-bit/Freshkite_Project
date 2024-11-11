@@ -1,6 +1,14 @@
 import CourseTemplate from "../../common/courseTemplate";
-
 export default function WebDev() {
+    // const [courses, setCourses] = useState([]);
+
+    // useEffect(() => {
+    //     // Fetch courses data from backend
+    //     fetch('http://localhost:5000/courses')
+    //         .then(response => response.json())
+    //         .then(data => setCourses(data))
+    //         .catch(error => console.error('Error fetching courses:', error));
+    // }, []);
     const courses = [
         {
             title: 'HTML CSS & JavaScript for Beginners',
@@ -12,7 +20,7 @@ export default function WebDev() {
             title: 'MERN Stack for Beginners',
             description: 'Learn React JS, Node JS, Express, and MongoDB.',
             image: '/images/Mern-Stack-Developer.png',
-            Link: '/courses/HtmlCssJs'
+            Link: '/courses/Mern'
         },
     ];
     return (

@@ -6,7 +6,7 @@ export default function ProblemSolving() {
             title: 'Basic Problen Solving',
             description: 'Master If | Loop | Sorting | Serching | Recursion | Patern Printing',
             image: '/images/basic_problem_solving.png',
-            Link: '/courses/HtmlCssJs'
+            Link: '/courses/BasicProblemSolving'
         },
         {
             title: 'DSA',

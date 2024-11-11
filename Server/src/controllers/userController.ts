@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../models/user";
-import { verifyToken } from "../utils/authUtils";
+import { verifyAuth } from "../utils/authUtils";
 require("dotenv").config();
 
 // Store user info in MongoDB
@@ -8,7 +8,7 @@ export const loginUser = async (req: Request, res: Response) => {
   const { idToken } = req.body;
 
   // Verify the token first
-  const userInfo = await verifyToken(idToken);
+  const userInfo = await verifyAuth(idToken);
 
   if (!userInfo) {
     return res.status(401).json({ message: "Invalid ID token" });

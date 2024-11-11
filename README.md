@@ -1,5 +1,5 @@
 # Freshkite_Project
-##Getting Started with the Frontend:
+## Getting Started with the Frontend:
 After cloning the repository, you need to follow these steps to set up and run the project:
 
 Install Dependencies: Use npm install to download all necessary packages and dependencies required for the project.

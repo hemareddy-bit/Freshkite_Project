@@ -1,42 +1,20 @@
 import { Request, Response } from "express";
-import { Course } from "../models/course";
+import * as courseService from "../Services/courseService";
 
-// Create a new course
-export const createCourse = async (req: Request, res: Response) => {
-  try {
-    // Check if a course with the same title already exists
-    const existingCourse = await Course.findOne({ title: req.body.title });
-
-    if (existingCourse) {
-      // If the course already exists, return a 400 Bad Request
-      return res
-        .status(400)
-        .json({ message: "Course with this title already exists." });
-    }
-
-    // Create a new course if the title is unique
-    const course = await Course.create(req.body);
-    res.status(201).json(course);
-  } catch (error: any) {
-    // Handle any unexpected errors
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Get all courses
+// Controller function to get basic course info (title, description, image)
 export const getCourses = async (req: Request, res: Response) => {
   try {
-    const courses = await Course.find();
+    const courses = await courseService.getBasicCourseInfo();
     res.status(200).json(courses);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// Get a course by ID
+// Controller function to get full course details by ID
 export const getCourseById = async (req: Request, res: Response) => {
   try {
-    const course = await Course.findById(req.params.id);
+    const course = await courseService.getCourseDetailsById(req.params.id);
     if (!course) return res.status(404).json({ message: "Course not found" });
     res.status(200).json(course);
   } catch (error: any) {
@@ -44,33 +22,44 @@ export const getCourseById = async (req: Request, res: Response) => {
   }
 };
 
-// Update a course by ID
-export const updateCourse = async (req: Request, res: Response) => {
+// Controller function to create a new course
+export const createCourse = async (req: Request, res: Response) => {
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true, // Return the updated document
-        runValidators: true, // Ensure validations are run
-      }
-    );
-    if (!updatedCourse)
-      return res.status(404).json({ message: "Course not found" });
-    res.status(200).json(updatedCourse);
+    const course = await courseService.createCourse(req.body);
+    res.status(201).json(course);
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error.message === "Course with this title already exists.") {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 
-// Delete a course by ID
+// Controller function to update a course by ID
+export const updateCourse = async (req: Request, res: Response) => {
+  try {
+    const updatedCourse = await courseService.updateCourse(req.params.id, req.body);
+    res.status(200).json(updatedCourse);
+  } catch (error: any) {
+    if (error.message === "Course not found") {
+      res.status(404).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
+  }
+};
+
+// Controller function to delete a course by ID
 export const deleteCourse = async (req: Request, res: Response) => {
   try {
-    const deletedCourse = await Course.findByIdAndDelete(req.params.id);
-    if (!deletedCourse)
-      return res.status(404).json({ message: "Course not found" });
-    res.status(200).json({ message: "Course deleted" });
+    const deletedCourse = await courseService.deleteCourse(req.params.id);
+    res.status(200).json({ message: "Course deleted", course: deletedCourse });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error.message === "Course not found") {
+      res.status(404).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 };

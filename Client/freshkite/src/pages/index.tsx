@@ -11,6 +11,7 @@ export default function Home() {
       <div>
         <HeroSection />  
         <LoginModal />
+        
       </div>
     </div>
   );

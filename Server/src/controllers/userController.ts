@@ -1,39 +1,46 @@
 import { Request, Response } from "express";
-import { User } from "../models/user";
-import { verifyAuth } from "../utils/authUtils";
-require("dotenv").config();
+import * as userService from "../Services/userService";
 
-// Store user info in MongoDB
+// Login or create a user and return a JWT token
 export const loginUser = async (req: Request, res: Response) => {
   const { idToken } = req.body;
 
-  // Verify the token first
-  const userInfo = await verifyAuth(idToken);
-
-  if (!userInfo) {
-    return res.status(401).json({ message: "Invalid ID token" });
-  }
-
   try {
-    // Check if the user already exists in the database
-    let user = await User.findOne({ googleId: userInfo.sub });
-    if (!user) {
-      // Create a new user if it doesn't exist
-      const user = await User.create({
-        googleId: userInfo.sub,
-        username: userInfo.name,
-        profilePicture: userInfo.picture,
-        email: userInfo.email,
-      });
-      // Generate a token for the user
-      const token = user.generateAuthToken();
-
-      return res.status(201).json({ message: "User stored successfully!" ,Token:token});
+    const token = await userService.loginOrCreateUser(idToken);
+    res.status(200).json({ token });
+  } catch (error: any) {
+    if (error.message === "Invalid ID token") {
+      res.status(401).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Server error" }); 
     }
+  }
+};
 
-    return res.status(200).json({ message: "User already exists!" });
-  } catch (error) {
-    console.error("Error storing user:", error);
-    return res.status(500).json({ message: "Server error" });
+// Get user information by user ID
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const user = await userService.getUserById(req.params.id);
+    res.status(200).json(user);
+  } catch (error: any) {
+    if (error.message === "User not found") {
+      res.status(404).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Server error" });
+    }
+  }
+};
+
+// Update user details by user ID
+export const updateUser = async (req: Request, res: Response) => {
+  try {
+    const updatedUser = await userService.updateUser(req.params.id, req.body);
+    res.status(200).json(updatedUser);
+  } catch (error: any) {
+    if (error.message === "User not found") {
+      res.status(404).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Server error" });
+    }
   }
 };
